@@ -1,0 +1,96 @@
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 56px;
+  background: #12121f;
+  border-bottom: 1px solid #2d2d44;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .logo-icon { font-size: 1.4rem; }
+  .logo-text { font-weight: 700; font-size: 1.05rem; letter-spacing: .02em; }
+}
+
+.meta { display: flex; gap: 8px; }
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: #1e1e3a;
+  border: 1px solid #3a3a5c;
+  color: #a78bfa;
+
+  &.badge-green { color: #34d399; border-color: #065f46; background: #022c22; }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  padding: 24px;
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.raw-events {
+  background: #1a1a2e;
+  border: 1px solid #2d2d44;
+  border-radius: 12px;
+  padding: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+
+  h4 {
+    margin: 0 0 12px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+}
+
+.event-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #1e1e30;
+  font-size: 0.8rem;
+
+  .ev-type { color: #a78bfa; font-family: monospace; }
+  .ev-time { color: #64748b; font-family: monospace; font-size: 0.72rem; }
+}
+
+.empty-raw {
+  color: #64748b;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0;
+}
+
+.main-panel { overflow-y: auto; }

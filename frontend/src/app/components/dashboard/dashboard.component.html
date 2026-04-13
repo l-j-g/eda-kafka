@@ -1,0 +1,35 @@
+<div class="dashboard">
+  <header class="top-bar">
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">EDA Kafka Demo</span>
+    </div>
+    <div class="meta">
+      <span class="badge">Confluent Cloud</span>
+      <span class="badge badge-green">Socket.IO Live</span>
+    </div>
+  </header>
+
+  <main class="content">
+    <aside class="sidebar">
+      <app-order-form (orderPlaced)="onOrderPlaced($event)" />
+
+      <div class="raw-events">
+        <h4>Raw Kafka Events</h4>
+        @for (e of recentEvents; track e.timestamp) {
+          <div class="event-row">
+            <span class="ev-type">{{ e.eventType }}</span>
+            <span class="ev-time">{{ e.timestamp | date:'HH:mm:ss.SSS' }}</span>
+          </div>
+        }
+        @if (recentEvents.length === 0) {
+          <p class="empty-raw">Waiting for events…</p>
+        }
+      </div>
+    </aside>
+
+    <section class="main-panel">
+      <app-event-timeline [journeys]="journeys" />
+    </section>
+  </main>
+</div>

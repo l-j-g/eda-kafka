@@ -1,0 +1,30 @@
+<div class="form-card">
+  <h2>Place New Order</h2>
+
+  <div class="field">
+    <label for="customer">Customer Name</label>
+    <input id="customer" type="text" [(ngModel)]="customerName"
+           placeholder="e.g. Jane Smith" [disabled]="submitting" />
+  </div>
+
+  <div class="items-list">
+    <h4>Items</h4>
+    @for (item of items; track item.name) {
+      <div class="item-row">
+        <span class="item-name">{{ item.name }}</span>
+        <span class="item-meta">x{{ item.qty }} — ${{ (item.price * item.qty).toFixed(2) }}</span>
+      </div>
+    }
+    <div class="total-row">
+      <strong>Total: ${{ total.toFixed(2) }}</strong>
+    </div>
+  </div>
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  <button class="btn-primary" (click)="submit()" [disabled]="submitting">
+    {{ submitting ? 'Placing order...' : 'Place Order' }}
+  </button>
+</div>

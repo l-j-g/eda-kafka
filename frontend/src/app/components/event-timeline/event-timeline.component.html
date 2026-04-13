@@ -1,0 +1,32 @@
+<div class="timeline-wrapper">
+  <h2>Order Journeys</h2>
+
+  @if (journeyList.length === 0) {
+    <p class="empty">No orders yet — place one to see the Kafka pipeline in action.</p>
+  }
+
+  @for (j of journeyList; track j.orderId) {
+    <div class="journey-card">
+      <div class="journey-header">
+        <span class="order-id">Order #{{ shortId(j.orderId) }}</span>
+        <span class="stage-badge">{{ j.latestStage }}</span>
+      </div>
+
+      <div class="stages">
+        @for (s of stagesFor(j); track s.stage; let last = $last) {
+          <div class="stage" [class.completed]="s.completed" [class.pending]="!s.completed">
+            <div class="dot" [style.background]="s.completed ? s.meta.color : '#2d2d44'">
+              <span>{{ s.meta.icon }}</span>
+            </div>
+            <div class="stage-info">
+              <div class="stage-label">{{ s.meta.label }}</div>
+              @if (s.timestamp) {
+                <div class="stage-time">{{ s.timestamp | date:'HH:mm:ss' }}</div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
