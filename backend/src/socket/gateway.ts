@@ -3,9 +3,12 @@ import { Server as IOServer, Socket } from 'socket.io';
 
 let io: IOServer;
 
-export function initSocketGateway(httpServer: HttpServer): IOServer {
+export function initSocketGateway(httpServer: HttpServer, allowedOrigins: string[]): IOServer {
   io = new IOServer(httpServer, {
-    cors: { origin: 'http://localhost:4200', methods: ['GET', 'POST'] },
+    cors: {
+      origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+      methods: ['GET', 'POST'],
+    },
   });
 
   io.on('connection', (socket: Socket) => {

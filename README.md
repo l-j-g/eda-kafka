@@ -72,6 +72,27 @@ ng serve
 
 Open `http://localhost:4200`.
 
+## Deploying To Render
+
+The simplest deployment shape for this repo is a single Render Web Service. The backend serves the built Angular app from the same origin, so you do not need a separate static site or frontend API URL configuration in production.
+
+### Render setup
+
+1. Push this repo to GitHub.
+2. In Render, create a new Blueprint or Web Service from the repo.
+3. If you use the included [`render.yaml`](./render.yaml), Render will use:
+   - `buildCommand`: install and build `backend` and `frontend`
+   - `startCommand`: start the backend from `backend`
+   - `healthCheckPath`: `/healthz`
+4. Set these environment variables in Render:
+   - `KAFKA_BROKERS`
+   - `KAFKA_API_KEY`
+   - `KAFKA_API_SECRET`
+   - `KAFKA_GROUP_ID_PREFIX` (optional)
+5. Deploy. Once the build is live, Render will expose a single public URL for both the Angular app and the API.
+
+The backend already binds `0.0.0.0` and reads `PORT` from the environment, which matches Render's runtime model.
+
 ## Using the Demo
 
 1. Enter a customer name in the **Place New Order** form and click **Place Order**
@@ -121,6 +142,7 @@ eda-kafka/
 | `KAFKA_API_KEY`        | Confluent Cloud API key                                 |
 | `KAFKA_API_SECRET`     | Confluent Cloud API secret                              |
 | `KAFKA_GROUP_ID_PREFIX`| Consumer group prefix (default `eda-demo`)              |
+| `RENDER_EXTERNAL_URL`  | Optional Render-provided URL used for same-origin CORS  |
 
 ## Key Technical Points
 

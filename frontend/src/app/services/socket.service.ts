@@ -11,7 +11,7 @@ export class SocketService implements OnDestroy {
   readonly events$: Observable<KafkaEvent>;
 
   constructor() {
-    this.socket = io(environment.socketUrl, { transports: ['websocket'] });
+    this.socket = io(environment.socketUrl || undefined, { transports: ['websocket'] });
 
     this.events$ = new Observable<KafkaEvent>(observer => {
       this.socket.on('kafka-event', (event: KafkaEvent) => observer.next(event));
