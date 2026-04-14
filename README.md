@@ -33,7 +33,7 @@ Each Kafka consumer simulates a separate microservice:
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js 18+ 
 - Angular CLI 17+ (`npm install -g @angular/cli`)
 - A **Confluent Cloud** account with:
   - A cluster created (Basic or Standard tier)
@@ -55,6 +55,7 @@ Each Kafka consumer simulates a separate microservice:
 cd backend
 cp .env.example .env
 # Edit .env — fill in KAFKA_BROKERS, KAFKA_API_KEY, KAFKA_API_SECRET
+nvm use
 npm install
 npm run dev
 ```
